@@ -71,7 +71,7 @@ class App extends Component {
           <div className="Tracker">
             <dl>
               <dt>Time</dt>
-              <dd>00:00:00 (👷)</dd>
+              <dd>00:00:00 (<span role="img">👷</span>)</dd>
               <dt>Distance</dt>
               <dd>{distance} km</dd>
               <dt>Positions tracked</dt>
