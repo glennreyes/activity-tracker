@@ -24,6 +24,7 @@ class App extends Component {
     started: false,
     distance: 0,
     coords: null,
+    history: [],
     updates: 0,
   }
 
@@ -55,28 +56,36 @@ class App extends Component {
       this.setState(state => ({
         coords,
         distance,
+        history: [...state.history, coords],
         updates: state.updates + 1,
       }));
     });
   }
 
   render() {
-    const { coords, distance, started, updates } = this.state;
+    const { distance, history, started, updates } = this.state;
 
     return (
       <div className="App">
-        <div className="App-header">
-          <h2>Activity tracker</h2>
-          <div>
-            <button onClick={this.onStartStop}>{started ? 'Stop' : 'Start'}</button>
-            {started && (
-              <div>
-                <h3>Distance: {distance} km</h3>
-                <h3>Updates: {updates}</h3>
-              </div>
-            )}
-          </div>
+        <div className="Tracker">
+          <dl>
+            <dt>Time</dt>
+            <dd>00:00:00</dd>
+            <dt>Distance</dt>
+            <dd>{distance} km</dd>
+            <dt>Positions tracked</dt>
+            <dd>{updates}</dd>
+          </dl>
+          <button onClick={this.onStartStop} className={started && 'started'}>{started ? 'Stop' : 'Start'}</button>
         </div>
+        <ul>
+          {history.map(item => (
+            <li>
+              <div>Lat: {item.latitude}</div>
+              <div>Lng: {item.longitude}</div>
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }

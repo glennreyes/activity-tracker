@@ -1,21 +1,25 @@
-.App-header {
-  background-color: #222;
+.App {
+  align-items: center;
+  background: linear-gradient(to right, #43c6ac, #191654);
+  font-family: 'Avenir Next', sans-serif;
+  flex-direction: column;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
   padding: 20px;
   color: white;
   text-align: center;
 }
 
-.App-content {
-  margin: 0 auto;
+.started {
+  color: #191654;
+}
+
+.Tracker {
+  background: rgba(0, 0, 0, .25);
+  border-radius: .5rem;
+  align-items: center;
+  display: flex;
+  justify-content: center;
   padding: 2rem;
-  width: 40rem;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
