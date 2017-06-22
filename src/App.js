@@ -55,7 +55,7 @@ class App extends Component {
 
       this.setState(state => ({
         coords,
-        distance,
+        distance: state.distance + distance,
         history: [...state.history, coords],
         updates: state.updates + 1,
       }));
