@@ -1,18 +1,43 @@
+.Wrapper {
+  padding: 2rem;
+}
+
 .App {
   align-items: center;
-  background: linear-gradient(to right, #43c6ac, #191654);
+  color: white;
+  display: flex;
   font-family: 'Avenir Next', sans-serif;
   flex-direction: column;
   height: 100vh;
-  display: flex;
   justify-content: center;
-  padding: 20px;
-  color: white;
   text-align: center;
 }
 
-.started {
-  color: #191654;
+button.started {
+  background: #191654;
+  border-color: white white white #43c6ac;
+  color: white;
+}
+
+.border {
+  border: .25rem solid white;
+  border-radius: 50%;
+  bottom: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.border.started {
+  animation: spin 1s linear infinite;
+  border-top-color: #43c6ac;
 }
 
 .Tracker {

@@ -66,17 +66,22 @@ class App extends Component {
     const { distance, history, started, updates } = this.state;
 
     return (
-      <div className="App">
-        <div className="Tracker">
-          <dl>
-            <dt>Time</dt>
-            <dd>00:00:00</dd>
-            <dt>Distance</dt>
-            <dd>{distance} km</dd>
-            <dt>Positions tracked</dt>
-            <dd>{updates}</dd>
-          </dl>
-          <button onClick={this.onStartStop} className={started && 'started'}>{started ? 'Stop' : 'Start'}</button>
+      <div className="Wrapper">
+        <div className="App">
+          <div className="Tracker">
+            <dl>
+              <dt>Time</dt>
+              <dd>00:00:00 (👷)</dd>
+              <dt>Distance</dt>
+              <dd>{distance} km</dd>
+              <dt>Positions tracked</dt>
+              <dd>{updates}</dd>
+            </dl>
+            <button onClick={this.onStartStop} className={started ? 'started' : undefined}>
+              <span>{started ? 'Stop' : 'Start'}</span>
+              <span className={`border${started ? ' started' : ''}`} />
+            </button>
+          </div>
         </div>
         <ul>
           {history.map(item => (
@@ -86,6 +91,7 @@ class App extends Component {
             </li>
           ))}
         </ul>
+
       </div>
     );
   }
