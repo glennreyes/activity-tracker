@@ -24,6 +24,7 @@ class App extends Component {
     started: false,
     distance: 0,
     coords: null,
+    updates: 0,
   }
   componentDidMount() {
     if (navigator.geolocation) {
@@ -46,12 +47,17 @@ class App extends Component {
         coords.latitude,
         coords.longitude,
       );
-      this.setState({ coords, distance });
+      this.setState(state => ({
+        coords,
+        distance,
+        updates: state.updates + 1,
+      }));
     });
   }
 
   render() {
-    const { coords, currentCoords, distance, started } = this.state
+    const { coords, distance, started, updates } = this.state;
+
     return (
       <div className="App">
         <div className="App-header">
@@ -59,8 +65,11 @@ class App extends Component {
           {coords ? (
             <div>
               <button onClick={this.onStartStop}>{started ? 'Stop' : 'Start'}</button>
-              {currentCoords && (
-                <h1>Distance: {distance} km</h1>
+              {started && (
+                <div>
+                  <h3>Distance: {distance} km</h3>
+                  <h3>Updates: {updates}</h3>
+                </div>
               )}
             </div>
           ) : <div>Loading tracker ...</div>}
