@@ -1,15 +1,12 @@
 .Wrapper {
-  padding: 2rem;
 }
 
 .App {
-  align-items: center;
   color: white;
   display: flex;
   font-family: 'Avenir Next', sans-serif;
-  flex-direction: column;
-  height: 100vh;
   justify-content: center;
+  margin: 1rem;
   text-align: center;
 }
 
@@ -47,5 +44,6 @@ button.started {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 2rem;
+  max-height: 30rem;
+  padding: 1rem;
 }
