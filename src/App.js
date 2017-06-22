@@ -71,16 +71,18 @@ class App extends Component {
           <div className="Tracker">
             <dl>
               <dt>Time</dt>
-              <dd>00:00:00 (<span role="img">👷</span>)</dd>
+              <dd>00:00:00 (<span role="img" aria-label="Soon!">👷</span>)</dd>
               <dt>Distance</dt>
               <dd>{distance} km</dd>
               <dt>Positions tracked</dt>
               <dd>{updates}</dd>
             </dl>
-            <button onClick={this.onStartStop} className={started ? 'started' : undefined}>
-              <span>{started ? 'Stop' : 'Start'}</span>
-              <span className={`border${started ? ' started' : ''}`} />
-            </button>
+            <div>
+              <button onClick={this.onStartStop} className={started ? 'started' : undefined}>
+                <span>{started ? 'Stop' : 'Start'}</span>
+                <span className={`border${started ? ' started' : ''}`} />
+              </button>
+            </div>
           </div>
         </div>
         <ul>
