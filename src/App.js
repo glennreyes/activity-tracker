@@ -26,27 +26,32 @@ class App extends Component {
     coords: null,
     updates: 0,
   }
-  componentDidMount() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(({ coords }) => {
-        this.setState({ coords });
-      });
-    }
-  }
 
   onStartStop = () => {
+    if (!navigator.geolocation) {
+      alert('You need geolocation support for this!');
+      return;
+    }
+
     this.setState(({ started }) => ({
       started: !started,
     }));
 
     navigator.geolocation.watchPosition(({ coords }) => {
       const { coords: prevCoords } = this.state;
+
+      if (!prevCoords) {
+        this.setState({ coords });
+        return;
+      }
+
       const distance = calculateDistance(
         prevCoords.latitude,
         prevCoords.longitude,
         coords.latitude,
         coords.longitude,
       );
+
       this.setState(state => ({
         coords,
         distance,
@@ -62,17 +67,15 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <h2>Activity tracker</h2>
-          {coords ? (
-            <div>
-              <button onClick={this.onStartStop}>{started ? 'Stop' : 'Start'}</button>
-              {started && (
-                <div>
-                  <h3>Distance: {distance} km</h3>
-                  <h3>Updates: {updates}</h3>
-                </div>
-              )}
-            </div>
-          ) : <div>Loading tracker ...</div>}
+          <div>
+            <button onClick={this.onStartStop}>{started ? 'Stop' : 'Start'}</button>
+            {started && (
+              <div>
+                <h3>Distance: {distance} km</h3>
+                <h3>Updates: {updates}</h3>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );
